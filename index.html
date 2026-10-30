@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Excel na Prática | Apostila Completa - 10 Módulos</title>
+    
+    <!-- Favicon com emoji de gráfico -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📊</text></svg>">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background: #0a1a14;
+            color: #e2e8f0;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        /* Hero */
+        .hero {
+            background: linear-gradient(180deg, #0f241c 0%, #0a1a14 100%);
+            padding: 60px 20px 50px;
+            text-align: center;
+            border-bottom: 1px solid #1a3329;
+        }
+        .badge {
+            display: inline-block;
+            background: #143328;
+            color: #4ade80;
+            font-size: 13px;
+            font-weight: 600;
+            padding: 6px 16px;
+            border-radius: 50px;
+            margin-bottom: 20px;
+            letter-spacing: 0.5px;
+        }
+        .hero h1 {
+            font-size: clamp(28px, 5vw, 42px);
+            font-weight: 800;
+            color: #fff;
+            margin-bottom: 16px;
+            line-height: 1.2;
+        }
+        .hero h1 span {
+            color: #4ade80;
+        }
+        .hero p {
+            font-size: 18px;
+            color: #94a3b8;
+            max-width: 600px;
+            margin: 0 auto 30px;
+        }
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin: 30px 0 40px;
+        }
+        .stat {
+            text-align: center;
+        }
+        .stat strong {
+            display: block;
+            font-size: 28px;
+            color: #4ade80;
+            font-weight: 800;
+        }
+        .stat span {
+            font-size: 13px;
+            color: #94a3b8;
+        }
+        .btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #22c55e, #16a34a);
+            color: #fff;
+            font-size: 18px;
+            font-weight: 700;
+            padding: 18px 40px;
+            border-radius: 12px;
+            text-decoration: none;
+            box-shadow: 0 10px 30px rgba(34, 197, 94, 0.3);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 40px rgba(34, 197, 94, 0.4);
+        }
+        .btn-center {
+            display: block;
+            text-align: center;
+            margin: 40px auto 10px;
+            width: fit-content;
+        }
+        /* Sections */
+        section {
+            padding: 60px 20px;
+        }
+        h2 {
+            font-size: 28px;
+            font-weight: 800;
+            color: #fff;
+            text-align: center;
+            margin-bottom: 15px;
+        }
+        .subtitle {
+            text-align: center;
+            color: #94a3b8;
+            margin-bottom: 40px;
+            font-size: 17px;
+        }
+        /* Benefits */
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+        .benefit-card {
+            background: #0f241c;
+            border: 1px solid #1a3329;
+            border-radius: 16px;
+            padding: 28px;
+            transition: border-color 0.2s;
+        }
+        .benefit-card:hover {
+            border-color: #4ade80;
+        }
+        .benefit-card h3 {
+            font-size: 18px;
+            color: #4ade80;
+            margin-bottom: 10px;
+        }
+        .benefit-card p {
+            color: #94a3b8;
+            font-size: 15px;
+        }
+        /* Modules */
+        .modules {
+            background: #0f241c;
+        }
+        .module-list {
+            display: grid;
+            gap: 12px;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        .module-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            background: #0a1a14;
+            border-radius: 12px;
+            padding: 18px 22px;
+            border-left: 4px solid #4ade80;
+        }
+        .module-num {
+            background: #143328;
+            color: #4ade80;
+            font-weight: 700;
+            font-size: 14px;
+            min-width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+        }
+        .module-item strong {
+            color: #fff;
+            display: block;
+            margin-bottom: 2px;
+        }
+        .module-item span {
+            color: #94a3b8;
+            font-size: 14px;
+        }
+        /* CTA Final */
+        .final-cta {
+            background: linear-gradient(180deg, #0f241c, #0a1a14);
+            text-align: center;
+            padding: 70px 20px;
+            border-top: 1px solid #1a3329;
+        }
+        .final-cta h2 {
+            margin-bottom: 12px;
+        }
+        .final-cta p {
+            color: #94a3b8;
+            max-width: 500px;
+            margin: 0 auto 30px;
+        }
+        .price-box {
+            background: #0f241c;
+            border: 1px solid #1a3329;
+            border-radius: 16px;
+            padding: 30px;
+            max-width: 400px;
+            margin: 0 auto 30px;
+        }
+        .price-box .old {
+            color: #64748b;
+            text-decoration: line-through;
+            font-size: 18px;
+        }
+        .price-box .current {
+            font-size: 42px;
+            font-weight: 800;
+            color: #4ade80;
+            margin: 8px 0;
+        }
+        .price-box .note {
+            font-size: 14px;
+            color: #94a3b8;
+        }
+        footer {
+            text-align: center;
+            padding: 30px;
+            color: #64748b;
+            font-size: 13px;
+            border-top: 1px solid #1a3329;
+        }
+        @media (max-width: 600px) {
+            .stats { gap: 20px; }
+            .stat strong { font-size: 22px; }
+            .btn { width: 100%; padding: 16px; }
+            .btn-center { width: 100%; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HERO -->
+    <header class="hero">
+        <div class="container">
+            <div class="badge">APOSTILA COMPLETA • 10 MÓDULOS</div>
+            <h1>Excel na <span>Prática</span></h1>
+            <p>Do zero ao nível intermediário. Aprenda fazendo: conceitos, exemplos, exercícios e boas práticas em 100 unidades didáticas.</p>
+            
+            <div class="stats">
+                <div class="stat">
+                    <strong>10</strong>
+                    <span>Módulos Completos</span>
+                </div>
+                <div class="stat">
+                    <strong>100</strong>
+                    <span>Unidades Didáticas</span>
+                </div>
+                <div class="stat">
+                    <strong>Iniciante +</strong>
+                    <span>Nível Intermediário</span>
+                </div>
+            </div>
+
+            <a href="https://pay.hotmart.com/C108254219N" class="btn">Quero Dominar o Excel Agora →</a>
+        </div>
+    </header>
+
+    <!-- BENEFÍCIOS -->
+    <section>
+        <div class="container">
+            <h2>Por que aprender Excel na prática?</h2>
+            <p class="subtitle">Uma habilidade essencial que transforma dados em decisões melhores e mais rápidas</p>
+            
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <h3>Aprender Fazendo</h3>
+                    <p>Conceitos → Exemplos → Exercícios → Boas práticas. Você não só entende a teoria, mas aplica imediatamente.</p>
+                </div>
+                <div class="benefit-card">
+                    <h3>Do Básico ao Intermediário</h3>
+                    <p>Ideal para quem está começando ou quer consolidar o conhecimento e subir de nível de forma estruturada.</p>
+                </div>
+                <div class="benefit-card">
+                    <h3>Ferramentas Reais do Mercado</h3>
+                    <p>Fórmulas, tabelas dinâmicas, gráficos, Power Query, macros e criação de dashboards profissionais.</p>
+                </div>
+                <div class="benefit-card">
+                    <h3>Aplicação Imediata</h3>
+                    <p>Finanças, administração, análise de dados, controles e relatórios. Use no trabalho desde as primeiras aulas.</p>
+                </div>
+            </div>
+
+            <a href="https://pay.hotmart.com/C108254219N" class="btn btn-center">Quero Começar Agora por R$ 25 →</a>
+        </div>
+    </section>
+
+    <!-- O QUE VOCÊ VAI APRENDER -->
+    <section class="modules">
+        <div class="container">
+            <h2>O que você vai dominar nesta apostila</h2>
+            <p class="subtitle">10 módulos completos para uma jornada estruturada e prática</p>
+            
+            <div class="module-list">
+                <div class="module-item">
+                    <div class="module-num">01</div>
+                    <div>
+                        <strong>Interface e Fundamentos</strong>
+                        <span>Apresentação do Excel, pasta de trabalho, planilhas, células e organização tabular</span>
+                    </div>
+                </div>
+                <div class="module-item">
+                    <div class="module-num">02</div>
+                    <div>
+                        <strong>Área de Trabalho e Funcionalidades</strong>
+                        <span>Navegação eficiente, atalhos e ferramentas essenciais do dia a dia</span>
+                    </div>
+                </div>
+                <div class="module-item">
+                    <div class="module-num">03</div>
+                    <div>
+                        <strong>Planilhas, Tabelas e Atalhos</strong>
+                        <span>Criação e organização de tabelas profissionais + produtividade com atalhos</span>
+                    </div>
+                </div>
+                <div class="module-item">
+                    <div class="module-num">04</div>
+                    <div>
+                        <strong>Formatação e Validação</strong>
+                        <span>Formatação condicional, validações de dados e imagens</span>
+                    </div>
+                </div>
+                <div class="module-item">
+                    <div class="module-num">05</div>
+                    <div>
+                        <strong>Gráficos</strong>
+                        <span>Criação e personalização de gráficos claros e profissionais</span>
+                    </div>
+                </div>
+                <div class="module-item">
+                    <div class="module-num">06</div>
+                    <div>
+                        <strong>Funções Essenciais</strong>
+                        <span>As funções mais usadas no mercado com exemplos práticos</span>
+                    </div>
+                </div>
+                <div class="module-item">
+                    <div class="module-num">07</div>
+                    <div>
+                        <strong>Planilhas Inteligentes e Macros</strong>
+                        <span>Proteção, macros básicas e impressão profissional</span>
+                    </div>
+                </div>
+                <div class="module-item">
+                    <div class="module-num">08</div>
+                    <div>
+                        <strong>Power Query, Power Pivot e IA</strong>
+                        <span>Ferramentas modernas + uso do ChatGPT com Excel</span>
+                    </div>
+                </div>
+                <div class="module-item">
+                    <div class="module-num">09</div>
+                    <div>
+                        <strong>Tabelas e Gráficos Dinâmicos</strong>
+                        <span>Análise poderosa de dados com tabelas dinâmicas</span>
+                    </div>
+                </div>
+                <div class="module-item">
+                    <div class="module-num">10</div>
+                    <div>
+                        <strong>Criação de Dashboards</strong>
+                        <span>Monte painéis visuais profissionais para tomada de decisão</span>
+                    </div>
+                </div>
+            </div>
+
+            <a href="https://pay.hotmart.com/C108254219N" class="btn btn-center">Garantir meu acesso por R$ 25 →</a>
+        </div>
+    </section>
+
+    <!-- PARA QUEM É -->
+    <section>
+        <div class="container">
+            <h2>Para quem é esta apostila?</h2>
+            <p class="subtitle">Feita para quem quer resultados reais e aplicáveis no dia a dia</p>
+            
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <h3>✓ Iniciantes</h3>
+                    <p>Quem nunca usou o Excel ou usa apenas o básico e quer evoluir com segurança e método.</p>
+                </div>
+                <div class="benefit-card">
+                    <h3>✓ Profissionais</h3>
+                    <p>Quem já trabalha com planilhas e precisa dominar funções, tabelas dinâmicas e dashboards.</p>
+                </div>
+                <div class="benefit-card">
+                    <h3>✓ Estudantes e Autônomos</h3>
+                    <p>Quem precisa organizar finanças, controles, relatórios e análises de forma profissional.</p>
+                </div>
+            </div>
+
+            <a href="https://pay.hotmart.com/C108254219N" class="btn btn-center">Quero Meu Acesso Agora →</a>
+        </div>
+    </section>
+
+    <!-- CTA FINAL -->
+    <section class="final-cta">
+        <div class="container">
+            <h2>Domine o Excel na prática e destaque-se</h2>
+            <p>Material completo, estruturado e focado em aplicação real. 10 módulos e 100 unidades didáticas para você evoluir de verdade.</p>
+            
+            <div class="price-box">
+                <div class="old">De R$ 97</div>
+                <div class="current">R$ 25</div>
+                <div class="note">Acesso imediato • Apostila completa • 10 módulos</div>
+            </div>
+
+            <a href="https://pay.hotmart.com/C108254219N" class="btn">Quero Dominar o Excel por R$ 25 →</a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            © 2026 • Todos os direitos reservados<br>
+            Este produto é um material educacional. Os resultados dependem da dedicação e prática de cada aluno.
+        </div>
+    </footer>
+
+</body>
+</html>
